@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calling Unsplash API</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</head>
+<body>
+    <div class="main-container">
+        <div class="search-container">
+            <form action="GET" id="form">
+                <input type="text" id="search" placeholder="search for photo">
+                <i class="fas fa-search"></i>
+            </form>
+        </div>
+        <div class="gallery"> 
+            <div class="display1"></div>
+            <div class="display2"></div>
+            <div class="display3"></div>
+        </div>
+
+
+        <div class="modal-container hidden">
+            <span id="close">&times;</span>
+            <div class="modal">
+                <img class="modal-content"></img>
+                <div class="modal-caption"></div>
+            </div>
+           
+
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+</html>
