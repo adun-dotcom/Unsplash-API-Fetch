@@ -36,13 +36,13 @@ function showGallery(arr){
     pic.appendChild(imgText)
 
     //condition to separate images to 3 separate divs
-    if (index % 3 === 1) {
+    if (index < 3) {
                 display1.append(pic)
             }
-    else if (index % 2 === 0) {
+    else if (index >=6) {
                 display2.append(pic)
             }
-    else if (index === 0 || index % 2 === 1) {
+    else if (index >=3 ) {
                 display3.append(pic)
 
                 }
