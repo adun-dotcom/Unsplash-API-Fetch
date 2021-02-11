@@ -1,4 +1,4 @@
-
+// DOM ELEMENTS
 const input = document.querySelector('#search')
 const form = document.querySelector('#form')
 const display1 = document.querySelector('.display1')
@@ -8,18 +8,42 @@ const modalContainer = document.querySelector('.modal-container')
 const modalImg = document.querySelector('.modal-content')
 const modalText = document.querySelector('.modal-caption')
 const closeModal = document.querySelector('#close')
+const dataLoading = document.querySelector('.loading')
+const imageGallery = document.querySelector('.gallery')
 
 //get data
 function getPhotos(query){
-    fetch(`https://api.unsplash.com/search/photos/?client_id=m21HoB-1I0YEuvvlFb1qyHbkZUvEYn6Z4Lbi1W7AOBc&query=${query}&per_page=10`)
+    dataLoading.style.display = ('block')
+    imageGallery.style.display = ('none')
+    fetch(`https://api.unsplash.com/search/photos/?client_id=m21HoB-1I0YEuvvlFb1qyHbkZUvEYn6Z4Lbi1W7AOBc&query=${query}&per_page=9`)
     .then(res=> res.json())
     .then(data=>{ 
+        if(data.results.length=== 0) {
+                let emptySearch = document.createElement("h1")
+                emptySearch.innerHTML = `Search Results for "${query}"`
+                let emptyExp = document.createElement("h3")
+                emptyExp.innerHTML = `Sorry, no items were found matching your search keyword`
+                emptySearch.style.width = "800px"
+                emptySearch.style.marginBottom = "100px"
+                emptyExp.style.paddingLeft = '150px'
+                emptyExp.style.width = '900px'
+                display1.append(emptySearch);
+                display1.append(emptyExp)
+                console.log(emptyExp)
+            }
     showGallery(data.results)
     })
+    .finally(()=>{
+        dataLoading.style.display = ('none')
+    imageGallery.style.display = ('grid')
+    })
+
+    
 }
 
 //function to display data to DOM
 function showGallery(arr){
+    
     //looping through the results
     arr.forEach((image, index)=>{
     const pic = document.createElement('div')
@@ -39,10 +63,10 @@ function showGallery(arr){
     if (index < 3) {
                 display1.append(pic)
             }
-    else if (index >=6) {
+    else if (index >=3 && index <6) {
                 display2.append(pic)
             }
-    else if (index >=3 ) {
+    else if (index >=6 ) {
                 display3.append(pic)
 
                 }
